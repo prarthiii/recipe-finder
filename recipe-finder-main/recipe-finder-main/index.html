@@ -1,0 +1,190 @@
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <!--Bootstrap-->
+      <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      />
+      <!-- document links -->
+      <link rel="stylesheet" href="./assets/css/reset.css" />
+      <link rel="stylesheet" href="./assets/css/style.css" />
+      <!-- document fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+      />
+      <title>Recipe House</title>
+      <style>
+        /* smooth transition for favorites section */
+        #favorite-container {
+          transition: all 0.4s ease-in-out;
+        }
+        #toggle-favorites {
+          display: block;
+          margin: 20px auto;
+          padding: 8px 18px;
+          background-color: #ffb703;
+          border: none;
+          border-radius: 8px;
+          font-weight: 600;
+          color: #000;
+          font-family: "Barlow Condensed", sans-serif;
+          cursor: pointer;
+        }
+        #toggle-favorites:hover {
+          background-color: #ff9f1c;
+        }
+      </style>
+    </head>
+
+    <body>
+      <!-- HEADER -->
+      <header>
+        <section class="nav-container">
+          <h1 class="logo">RECIPE FINDER</h1>
+          <nav>
+            <ul>
+              <li><a href="#recipe-finder">Recipe Finder</a></li>
+              <li><a href="#recipe-history">Previous Recipes</a></li>
+            </ul>
+          </nav>
+        </section>
+      </header>
+
+      <main class="wrap">
+        <!-- LEFT PANEL -->
+        <section id="left-wrap">
+          <article class="recipe-box" id="recipe-finder">
+            <form>
+              <h2>ENTER YOUR INGREDIENTS</h2>
+              <img
+                src="./assets/images/ingredient-image.jpeg"
+                alt="stock image of a meal with ingredients"
+                class="recipe-box__image"
+              />
+              <input
+                type="text"
+                class="recipe-box__field"
+                placeholder="First Ingredient"
+                id="form1"
+              />
+              <input
+                type="text"
+                class="recipe-box__field"
+                placeholder="Second Ingredient"
+                id="form2"
+              />
+              <input
+                type="text"
+                class="recipe-box__field"
+                placeholder="Third Ingredient"
+                id="form3"
+              />
+              <div class="modal" id="myModal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <p>No results found - please try entering some new ingredients</p>
+                </div>
+              </div>
+              <button class="btn" id="searchBtn">Search</button>
+            </form>
+          </article>
+
+          <!-- RECIPE HISTORY -->
+          <article id="recipe-history-container">
+            <h2>RECIPE HISTORY</h2>
+            <div id="recipe-history"></div>
+            <ul id="recipe-history-list"></ul>
+            <button class="btn" id="clearBtn">Clear recipe history</button>
+          </article>
+        </section>
+
+        <!-- RIGHT PANEL (SEARCH RESULTS + VIDEO) -->
+        <section id="right-wrap">
+          <article>
+            <ul id="search-results"></ul>
+          </article>
+
+          <article id="youtube-tutorial">
+            <h2 id="recipe-title"></h2>
+            <iframe
+              id="youtube-video"
+              width="560"
+              height="315"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <p>
+              <span id="selected-ingredients"></span>
+            </p>
+          </article>
+        </section>
+      </main>
+
+      <!-- === FAVORITE RECIPES SECTION (COLLAPSIBLE) === -->
+      <section id="favorite-section" style="margin-top:80px; padding:20px;">
+        <h2
+          style="text-align:center; font-family:'Barlow Condensed', sans-serif; font-weight:600;"
+        >
+          ⭐ Favorite Recipes
+        </h2>
+
+        <button id="toggle-favorites">Show Favorites</button>
+
+        <div
+          id="favorite-container"
+          style="display:none; flex-wrap:wrap; justify-content:center; gap:20px; margin-top:20px;"
+        ></div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer style="margin-top:50px;">
+        <div class="footer-container">
+          <div class="footer">
+            <div class="footer-email-form">
+              <h2>Sign up to our mailing list!</h2>
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                id="footer-email"
+              />
+              <input type="submit" value="send" id="footer-email-btn" />
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <!--Bootstrap-->
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"
+      ></script>
+
+      <script type="text/javascript" src="./assets/js/script.js"></script>
+
+      <!-- === COLLAPSE SCRIPT === -->
+      <script>
+        const toggleBtn = document.getElementById("toggle-favorites");
+        const favContainer = document.getElementById("favorite-container");
+
+        toggleBtn.addEventListener("click", () => {
+          if (favContainer.style.display === "none") {
+            favContainer.style.display = "flex";
+            toggleBtn.textContent = "Hide Favorites";
+          } else {
+            favContainer.style.display = "none";
+            toggleBtn.textContent = "Show Favorites";
+          }
+        });
+      </script>
+    </body>
+  </html>
